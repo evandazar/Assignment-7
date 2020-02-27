@@ -14,24 +14,17 @@
 let balloon = document.getElementById("balloon");
 let currentSize = 100;
 
-document.addEventListener('keydown', function(event) {
-    event.preventDefault();
-    if(event.key == "ArrowUp") {
-        console.log("arrow up");
-        currentSize *= 1.1;
-        balloon.style.fontSize = currentSize + "%";
-    }
-    else if(event.key == "ArrowDown") {
-        console.log("arrow down");
-        currentSize *= 0.9;
-        balloon.style.fontSize = currentSize + "%";
-    }
-    if (currentSize >= 300)
-{
-  balloon.innerText = "💥";
-  document.removeEventListener('keydown',function(event){})
-}
-
+document.addEventListener("keydown", function(event) {
+  event.preventDefault();
+  if (event.key == "ArrowUp") {
+    console.log("arrow up");
+    currentSize *= 1.1;
+    balloon.style.fontSize = currentSize + "%";
+  } else if (event.key == "ArrowDown") {
+    console.log("arrow down");
+    currentSize *= 0.9;
+    balloon.style.fontSize = currentSize + "%";
+  }
 });
 
 // 2. The index.html page has a tabbed layout. Make the default state of the layout show
@@ -42,3 +35,45 @@ document.addEventListener('keydown', function(event) {
 // to at minimum add listeners to each link and toggle the display of the tab contents.
 // Hint: display: none; hides an element, and display: block; will bring it
 //document.addEventListener
+link = [
+  document.getElementById("tab1Link"),
+  document.getElementById("tab2Link"),
+  document.getElementById("tab3Link")
+];
+tab = [
+  document.getElementById("tab1"),
+  document.getElementById("tab2"),
+  document.getElementById("tab3")
+];
+const tab1Show = event => {
+  event.preventDefault();
+    tab[0].style.display = "block";
+    tab[1].style.display = "none";
+    tab[2].style.display = "none";
+};
+
+const tab2Show = event => {
+  event.preventDefault();
+    tab[0].style.display = "none";
+    tab[1].style.display = "block";
+    tab[2].style.display = "none";
+};
+
+const tab3Show = event => {
+  event.preventDefault();
+    tab[0].style.display = "none";
+    tab[1].style.display = "none";
+    tab[2].style.display = "block";
+};
+
+const SetDefaultState = () => {
+  tab[0].style.display = "block";
+  tab[1].style.display = "none";
+  tab[2].style.display = "none";
+};
+
+SetDefaultState();
+
+link[0].addEventListener("click",tab1Show);
+link[1].addEventListener("click",tab2Show);
+link[2].addEventListener("click",tab3Show);
